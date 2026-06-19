@@ -40,12 +40,28 @@ zenml init
 3) Avviare dashboard
 zenml up
 
-3) Lanciare la pipeline
+5) Lanciare la pipeline
 python 1_basic_concepts/1_zenml.py
 
 Nella dashboard vedrai "graficamente" la tua pipeline:
 ![Zenml_Dashboard_Pipeline](images/zenml_pt1.png)
 
+Siccome ho lanciato la pipeline 3 volte vedrai 3 esecuzioni:
+![Zenml_Dashboard_Pipeline](images/zenml_pt2.png)
+
+E dentro vedrai la "grafica" della pipeline (nota come first_step non è collegato a nessuno.)
+![Zenml_Dashboard_Pipeline](images/zenml_pt3.png)
+
 ZenML è intelligente. Se la pipeline viene eseguita e la rieseguiamo, e capisce che nulla, rispetto a prima cambia, usa la cache. Nell'esempio, ho usato come decoratore @step(enable_cache=False) quando genero un numero randomico per far capire a ZenML che quello step non deve essere "cachato" ma ripetuto.
+
+Ecco cosa succede quando una pipeline fallisce (nel nostro caso generiamo un numero >=5 )
+Using cached version of step first_step.
+Step second_step has started.
+Second step in progress...Generating a number between 0 and 10...
+Failed to run step second_step: ERROR: we just simulate it.
+Step second_step failed.
+![Zenml_Dashboard_Pipeline](images/zenml_pt4.png)
+![Zenml_Dashboard_Pipeline](images/zenml_pt5.png)
+
 
 
