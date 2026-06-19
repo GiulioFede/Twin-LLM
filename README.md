@@ -6,6 +6,14 @@ An LLM that is your twin
 Per evitare di avere un codice monolitico che gestisce tutto, un complesso ML system viene progettato secondo il pattern Feature, Training, Inference (FTI). Ovvero dai raw data vengono estratte le feature e le etichette (Feature stage) e vengono salvate in un feature store, poi si allena il modello con le feature e salvato in un model registry (Training stage) e infine si procede con l'inferenza usando le feature nuove + feature estratte e modello allenato (Inference stage).
 
 
+# FEATURE stage
+## Extract, Transfom, Load (ETL)
+Per ETL si intende la pipeline con cui estraiamo i dati per esempio dal web (Extraction), li puliamo/standardiziamo (Transformation) e poi li carichiamo in una data warehouse (Load).
+
+
+
+
+
 #Setup
 
 conda create -n twinllm python=3.11
@@ -63,5 +71,7 @@ Step second_step failed.
 ![Zenml_Dashboard_Pipeline](images/zenml_pt4.png)
 ![Zenml_Dashboard_Pipeline](images/zenml_pt5.png)
 
+Perchè se first_step non dipende da nessuno, nel log non viene eseguito in parallelo al second step?
+Sul computer locale (Local Orchestrator), ZenML eseguirà first_step e second_step in modo sequenziale (prima uno, poi l'altro) perché rispetta l'ordine in cui li hai scritti nel codice. Ma se mettessi questa pipeline in produzione su Kubernetes o Kubeflow, l'orchestratore vedrebbe che non c'è passaggio di dati tra first_step e second_step e li eseguirebbe in contemporanea (parallelo) per risparmiare tempo!
 
 
