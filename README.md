@@ -10,6 +10,21 @@ Per evitare di avere un codice monolitico che gestisce tutto, un complesso ML sy
 ## Extract, Transfom, Load (ETL)
 Per ETL si intende la pipeline con cui estraiamo i dati per esempio dal web (Extraction), li puliamo/standardiziamo (Transformation) e poi li carichiamo in una data warehouse (Load).
 
+### Setup
+Dove salveremo i dati sarà MongoDB, quindi installiamo pydrive (driver ufficiale python per comunicare con MongoDB):
+poetry add pymongo
+e logoru per il logging:
+poetry add loguru
+
+### Variabili di ambiente
+Creiamo un file .settings dove mettiamo le nostre variabili di ambiente:
+
+
+### Creiamo connessione con MongoDB
+feature_stage/db/mongodb.py
+Creiamo la classe che effettua la connessione. Il costruttore effettua la connessione una sola volta. Grazie alla variabile privata di classe (nota che non usiamo self) qualsiasi istanza si creerà, tale connessione verrà creata una e una sola volta, all'inizio nel costruttore (metodo __new__).
+
+
 
 
 
